@@ -390,7 +390,7 @@ def ParseCSV(csv, to_datetime=True, out_of_stock_as_nan=True):
                [13, 'COUNT_REFURBISHED', False],
                [14, 'CollectableOffers', False],
                [15, 'EXTRA_INFO_UPDATES', False],
-               [16, 'RATING', True],
+               [16, 'RATING', False],
                [17, 'COUNT_REVIEWS', False],
                [18, 'BUY_BOX_SHIPPING', True],
                [19, 'USED_NEW_SHIPPING', True],
@@ -428,9 +428,9 @@ def ParseCSV(csv, to_datetime=True, out_of_stock_as_nan=True):
                 values = values.astype(np.float)/100
                 if out_of_stock_as_nan:
                     values[nan_mask] = np.nan
-
-            if key == 'RATING':
-                values /= 10
+            
+            #if key == 'RATING':
+            #    values /= 10
 
             timeval = keepaTime.KeepaMinutesToTime(times, to_datetime)
             product_data['%s_time' % key] = timeval
